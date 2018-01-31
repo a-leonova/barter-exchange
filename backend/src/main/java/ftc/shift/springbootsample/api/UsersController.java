@@ -46,15 +46,14 @@ public class UsersController {
     User user = userRepository.find_user(email);
     if (user == null)
       return null;
-    else
-      if (!encoder.encode(password).equals(user.getPassword()))
-        return null;
-    else{
 
-        String cookie_value = RandomString.randomAlphaNumeric(20);
-        response.addCookie(new Cookie("sid", cookie_value));
-        return user;
-      }
+
+    if (!encoder.matches(password, user.getPassword()))
+        return null;
+
+      String cookie_value = RandomString.randomAlphaNumeric(20);
+      response.addCookie(new Cookie("sid", cookie_value));
+      return user;
   }
 
 

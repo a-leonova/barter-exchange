@@ -21,7 +21,7 @@ public class UsersController {
   private UserRepository userRepository;
   private PasswordEncoder encoder = new BCryptPasswordEncoder();
 
-
+//запрос в виде "GET/api/register?email=my_email&password=my_password
   @GetMapping("/api/register") public @ResponseBody User register(@RequestParam("email") String email,
                                                               @RequestParam("password") String password,
                                                               HttpServletResponse response){
@@ -38,18 +38,18 @@ public class UsersController {
     else
       return null; //there is already user with this email
   }
-
+  //запрос в виде "GET/api/login?email=my_email&password=my_password
   @GetMapping("/api/login") public @ResponseBody User login(@RequestParam("email") String email,
                                                               @RequestParam("password") String password,
                                                               HttpServletResponse response){
 
     User user = userRepository.find_user(email);
     if (user == null)
-      return null;
+      return null; //no user
 
 
     if (!encoder.matches(password, user.getPassword()))
-        return null;
+        return null; //mismatching password
 
       String cookie_value = RandomString.randomAlphaNumeric(20);
       response.addCookie(new Cookie("sid", cookie_value));

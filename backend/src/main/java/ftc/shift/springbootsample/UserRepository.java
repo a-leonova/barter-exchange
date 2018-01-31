@@ -1,8 +1,6 @@
 package ftc.shift.springbootsample;
 
 import ftc.shift.springbootsample.models.User;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
@@ -21,7 +19,6 @@ public class UserRepository {
   //хранилище пользователей (используем вместо базы данных)
   private Map<String, User> users = new HashMap<>();
   private Map<String, String> cookies = new HashMap<>();
-  private PasswordEncoder encoder = new BCryptPasswordEncoder();
 
   public UserRepository(){
 
@@ -30,14 +27,13 @@ public class UserRepository {
   public User find_user(String email){
 
     for (Map.Entry<String, User> entry : users.entrySet()) {
-      if (entry.getValue().getEmail() == email)
+      if (entry.getValue().getEmail().equals(email))
         return entry.getValue();
     }
       return null;
   }
 
-  public User add_user(String email, String password){
-    String hashed_password = encoder.encode(password);
+  public User add_user(String email, String hashed_password){
     User new_user = new User(email, hashed_password, String.valueOf(sequence.getAndIncrement()));
     users.put(new_user.getId(), new_user);
     return new_user;

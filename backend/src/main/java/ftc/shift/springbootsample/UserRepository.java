@@ -3,6 +3,7 @@ package ftc.shift.springbootsample;
 import ftc.shift.springbootsample.models.User;
 import org.springframework.stereotype.Repository;
 
+import javax.jws.soap.SOAPBinding;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -21,6 +22,18 @@ public class UserRepository {
   private Map<String, String> cookies = new HashMap<>();
 
   public UserRepository(){
+    User user = new User("ololo", "ololo", String.valueOf(sequence.getAndIncrement()));
+    users.put(user.getId(), user);
+
+    user = new User("ololosha", "ololosha", String.valueOf(sequence.getAndIncrement()));
+    users.put(user.getId(), user);
+
+    user = new User("azaza", "azaza", String.valueOf(sequence.getAndIncrement()));
+    users.put(user.getId(), user);
+
+    user = new User("keki", "keki", String.valueOf(sequence.getAndIncrement()));
+    users.put(user.getId(), user);
+
 
   }
 

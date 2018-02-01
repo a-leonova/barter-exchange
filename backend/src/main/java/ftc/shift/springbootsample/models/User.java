@@ -1,8 +1,12 @@
 package ftc.shift.springbootsample.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  * Модель пользователя
  */
+
+@JsonIgnoreProperties(value = {"password"})
 public class User {
 
   private String id;

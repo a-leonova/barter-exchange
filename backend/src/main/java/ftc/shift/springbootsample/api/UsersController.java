@@ -21,10 +21,10 @@ public class UsersController {
   private UserRepository userRepository;
   private PasswordEncoder encoder = new BCryptPasswordEncoder();
 
-//запрос в виде "POST/api/register?email=my_email&password=my_password
+  //запрос в виде "GET/api/login?email=my_email&password=my_password
   @PostMapping("/api/register") public @ResponseBody User register(@RequestParam("email") String email,
-                                                              @RequestParam("password") String password,
-                                                              HttpServletResponse response){
+                                                                   @RequestParam("password") String password,
+                                                                   HttpServletResponse response){
     if (userRepository.findUser(email) == null){
 
       User new_user = userRepository.addUser(email, encoder.encode(password));
@@ -38,7 +38,7 @@ public class UsersController {
     else
       return null; //there is already user with this email
   }
-  //запрос в виде "GET/api/login?email=my_email&password=my_password
+  //запрос в виде "POST/api/register?email=my_email&password=my_password
   @GetMapping("/api/login") public @ResponseBody User login(@RequestParam("email") String email,
                                                               @RequestParam("password") String password,
                                                               HttpServletResponse response){
@@ -97,6 +97,13 @@ public class UsersController {
       user.setPage_in_social_network(pageInSocialNetwork);
     return user;
   }
+
+//  public boolean checkCookieId (String cookie, String id){
+//    if (!userRepository.getUserByCookie(cookie).getId().equals(id))
+//      return false;
+//    else
+//      return true;
+//  }
 
 
 }

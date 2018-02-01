@@ -18,9 +18,6 @@ public class User {
   private Integer rate;
   private String number;
   private String page_in_social_network;
-  private Vector<String> waresToGive = new Vector<>();
-  private Vector<String> wantedWares = new Vector<>();
-
 
   public String getId() {
     return id;

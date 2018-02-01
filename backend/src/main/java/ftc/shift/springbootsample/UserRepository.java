@@ -24,7 +24,7 @@ public class UserRepository {
 
   }
 
-  public User find_user(String email){
+  public User findUser(String email){
 
     for (Map.Entry<String, User> entry : users.entrySet()) {
       if (entry.getValue().getEmail().equals(email))
@@ -33,13 +33,19 @@ public class UserRepository {
       return null;
   }
 
-  public User add_user(String email, String hashed_password){
+  public User getUserByCookie(String cookie){
+
+    return users.get(cookies.get(cookie));
+
+  }
+
+  public User addUser(String email, String hashed_password){
     User new_user = new User(email, hashed_password, String.valueOf(sequence.getAndIncrement()));
     users.put(new_user.getId(), new_user);
     return new_user;
   }
 
-  public void add_cookie(String cookie_value, String id){
+  public void addCookie(String cookie_value, String id){
     cookies.put(cookie_value, id);
   }
 

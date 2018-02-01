@@ -21,18 +21,18 @@ public class UsersController {
   private UserRepository userRepository;
   private PasswordEncoder encoder = new BCryptPasswordEncoder();
 
-//запрос в виде "GET/api/register?email=my_email&password=my_password
-  @GetMapping("/api/register") public @ResponseBody User register(@RequestParam("email") String email,
+//запрос в виде "POST/api/register?email=my_email&password=my_password
+  @PostMapping("/api/register") public @ResponseBody User register(@RequestParam("email") String email,
                                                               @RequestParam("password") String password,
                                                               HttpServletResponse response){
-    if (userRepository.find_user(email) == null){
+    if (userRepository.findUser(email) == null){
 
-      User new_user = userRepository.add_user(email, encoder.encode(password));
+      User new_user = userRepository.addUser(email, encoder.encode(password));
 
       String cookie_value = RandomString.randomAlphaNumeric(20);
       response.addCookie(new Cookie("sid", cookie_value));
 
-      userRepository.add_cookie(cookie_value, new_user.getId());
+      userRepository.addCookie(cookie_value, new_user.getId());
       return new_user;
     }
     else
@@ -43,7 +43,7 @@ public class UsersController {
                                                               @RequestParam("password") String password,
                                                               HttpServletResponse response){
 
-    User user = userRepository.find_user(email);
+    User user = userRepository.findUser(email);
     if (user == null)
       return null; //no user
 
@@ -56,6 +56,10 @@ public class UsersController {
       return user;
   }
 
-
+  //Request "GET/api/user" with the aid of cookie
+  //backend will know user and will check if he is in the system
+  @GetMapping("/api/user") public @ResponseBody User getUserInfo(@CookieValue("sid") String sidCookie){
+    return userRepository.getUserByCookie(sidCookie); //if null returned - session was finished, cookie was deleted
+  }
 
 }

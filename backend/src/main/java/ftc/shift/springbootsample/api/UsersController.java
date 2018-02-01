@@ -62,4 +62,41 @@ public class UsersController {
     return userRepository.getUserByCookie(sidCookie); //if null returned - session was finished, cookie was deleted
   }
 
+  //Request "GET/api/user/{id}" - when you need information about another user
+  @GetMapping("/api/user/{id}") public @ResponseBody User getAnotherUserInfo(@PathVariable String id){
+    return userRepository.getUserById(id); //if null returned - there is no user with this ID
+  }
+
+  //Request "PUT/api/user/change?name=newName&email=newEmail....
+  //some fields can be unchanged, so they won't be in request
+  //but backend will check it
+  @PutMapping("/api/user/change") public @ResponseBody User changeUser(@CookieValue(value = "sid") String sidCookie,
+                                                                       @RequestParam(value = "email", defaultValue = "null") String email,
+                                                                       @RequestParam(value = "password", defaultValue = "null") String password,
+                                                                       @RequestParam(value = "name", defaultValue = "null") String name,
+                                                                       @RequestParam(value = "city", defaultValue = "null") String city,
+                                                                       @RequestParam(value = "number", defaultValue = "null") String number,
+                                                                       @RequestParam(value = "pageInSocialNetwork", defaultValue = "null") String pageInSocialNetwork) {
+
+    User user = userRepository.getUserByCookie(sidCookie);
+    if (user == null)
+      return null; //no user with this cookie. session was finished
+
+    if (!email.equals("null"))
+        user.setEmail(email);
+
+    if (!password.equals("null"))
+      user.setPassword(encoder.encode(password));
+    if (!name.equals("null"))
+      user.setName(name);
+    if (!city.equals("null"))
+      user.setCity(city);
+    if (!number.equals("null"))
+      user.setNumber(number);
+    if (!pageInSocialNetwork.equals("null"))
+      user.setPage_in_social_network(pageInSocialNetwork);
+
+    return user;
+  }
+
 }

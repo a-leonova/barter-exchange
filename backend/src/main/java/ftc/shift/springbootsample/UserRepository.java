@@ -39,6 +39,10 @@ public class UserRepository {
 
   }
 
+  public  User getUserById(String id){
+    return users.get(id);
+  }
+
   public User addUser(String email, String hashed_password){
     User new_user = new User(email, hashed_password, String.valueOf(sequence.getAndIncrement()));
     users.put(new_user.getId(), new_user);

@@ -1,11 +1,13 @@
 package ftc.shift.springbootsample;
 
 import ftc.shift.springbootsample.models.Ware;
+import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
+@Repository
 public class WareRepository {
     private final AtomicLong sequence = new AtomicLong(1);
     private Map<String, Ware> wares = new HashMap<>();

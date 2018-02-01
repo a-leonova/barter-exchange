@@ -1,21 +1,15 @@
 package ftc.shift.springbootsample.api;
 
 
-import ftc.shift.springbootsample.UserRepository;
 import ftc.shift.springbootsample.WareRepository;
-import static ftc.shift.springbootsample.UserRepository.*;
-import ftc.shift.springbootsample.models.User;
 import ftc.shift.springbootsample.models.Ware;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletResponse;
+import java.util.Collection;
 
 @RestController
 @CrossOrigin
-
 public class WareController {
   @Autowired
   private WareRepository wareRepository;
@@ -46,8 +40,16 @@ public class WareController {
 
       if (!exploitation.equals("null"))
           ware.setExploitation(exploitation);
-      
+
       return ware;
+  }
+
+  @GetMapping("api/ware/filter") public Collection<Ware> listWare(@RequestParam(value = "category", defaultValue = "null") String category,
+                                                                  @RequestParam(value = "city", defaultValue = "null") String city,
+                                                                  @RequestParam(value = "exploitation", defaultValue = "null") String exploitation) {
+
+
+
   }
 
 }

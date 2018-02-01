@@ -39,7 +39,7 @@ public class UsersController {
       return null; //there is already user with this email
   }
   //запрос в виде "POST/api/register?email=my_email&password=my_password
-  @GetMapping("/api/login") public @ResponseBody User login(@RequestParam("email") String email,
+  @PostMapping("/api/login") public @ResponseBody User login(@RequestParam("email") String email,
                                                               @RequestParam("password") String password,
                                                               HttpServletResponse response){
 
@@ -56,14 +56,14 @@ public class UsersController {
       return user;
   }
 
-  //Request "GET/api/user" with the aid of cookie
-  //backend will know user and will check if he is in the system
-  @GetMapping("/api/user") public @ResponseBody User getUserInfo(@CookieValue("sid") String sidCookie){
-    return userRepository.getUserByCookie(sidCookie); //if null returned - session was finished, cookie was deleted
-  }
+//  //Request "GET/api/user" with the aid of cookie
+//  //backend will know user and will check if he is in the system
+//  @GetMapping("/api/user/id") public @ResponseBody User getUserInfo(@CookieValue("sid") String sidCookie){
+//    return userRepository.getUserByCookie(sidCookie); //if null returned - session was finished, cookie was deleted
+//  }
 
   //Request "GET/api/user/{id}" - when you need information about another user
-  @GetMapping("/api/user/{id}") public @ResponseBody User getAnotherUserInfo(@PathVariable String id){
+  @GetMapping("/api/user/{id}") public @ResponseBody User getUserInfo(@PathVariable String id){
     return userRepository.getUserById(id); //if null returned - there is no user with this ID
   }
 

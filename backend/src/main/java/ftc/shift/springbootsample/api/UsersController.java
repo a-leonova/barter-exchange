@@ -95,8 +95,8 @@ public class UsersController {
       user.setNumber(number);
     if (!pageInSocialNetwork.equals("null"))
       user.setPage_in_social_network(pageInSocialNetwork);
-
     return user;
   }
+
 
 }

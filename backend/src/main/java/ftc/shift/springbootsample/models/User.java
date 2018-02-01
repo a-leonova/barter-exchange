@@ -1,6 +1,7 @@
 package ftc.shift.springbootsample.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import  java.util.Vector;
 
 /**
  * Модель пользователя
@@ -17,6 +18,9 @@ public class User {
   private Integer rate;
   private String number;
   private String page_in_social_network;
+  private Vector<String> waresToGive = new Vector<>();
+  private Vector<String> wantedWares = new Vector<>();
+
 
   public String getId() {
     return id;

@@ -67,6 +67,12 @@ public class WareController {
     return filteredList;
 
   }
+//GET/api/ware/{id}
+    @GetMapping("api/ware/{id}") public Ware getWare(@PathVariable String id){
+
+      return wareRepository.findWare(id);
+
+    }
 
 
     private Collection<Ware> categoryFilter(String category, Collection<Ware> unfilteredList){

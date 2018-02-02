@@ -43,7 +43,7 @@ public class WareRepository {
     public Ware addWare(Ware ware, String id){
         ware.setId(String.valueOf(sequence.getAndIncrement()));
         ware.setOwnerId(id);
-        ware.setStatus("Свободен");
+        ware.setStatus("Свободный");
         wares.put(ware.getId(), ware);
         return ware;
     }

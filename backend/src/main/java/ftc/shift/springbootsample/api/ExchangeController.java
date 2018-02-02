@@ -43,7 +43,7 @@ public class ExchangeController {
         return buildExchange(exchange);
     }
 
-    @PostMapping("/api/exchanges/find-complex") public Collection<Exchange> getComplexExchange(@RequestBody Wish wish){
+    @PostMapping("/api/exchanges/find-chain") public Collection<Exchange> getComplexExchange(@RequestBody Wish wish){
         Collection<StoredExchange> exchange = parseVertex(findExchange(wish,5));
         if(exchange==null) {
             return null;
@@ -56,15 +56,14 @@ public class ExchangeController {
         if(vertex.parent!=null) {
             Vector<StoredExchange> exchangeChain = new Vector<>();
             Vertex current = vertex.parent;
-            Vertex previous = vertex;
+            String starterNeed=vertex.exchangeWare;
             do {
                 StoredExchange exchange = new StoredExchange();
                 exchange.setFirstUserId(current.userId);
-                exchange.setFirstWareId(previous.exchangeWare);
+                exchange.setFirstWareId(starterNeed);
                 exchange.setSecondUserId(current.parent.userId);
                 exchange.setSecondWareId(current.exchangeWare);
-                exchangeChain.add(0, exchange);
-                previous = current;
+                exchangeChain.add(exchange);
                 current = current.parent;
             } while (!current.equals(vertex));
             return exchangeChain;
@@ -96,7 +95,9 @@ public class ExchangeController {
             e.setFirstUser(userRepository.getUserById(s.getFirstUserId()));
             e.setSecondUser(userRepository.getUserById(s.getSecondUserId()));
             e.setFirstWare(wareRepository.findWare(s.getFirstWareId()));
+            wareRepository.findWare(s.getFirstWareId()).setStatus("В обработке");
             e.setSecondWare(wareRepository.findWare(s.getSecondWareId()));
+            wareRepository.findWare(s.getSecondWareId()).setStatus("В обработке");
             exchange.add(e);
         }
         return exchange;
@@ -108,7 +109,9 @@ public class ExchangeController {
             vertex.neededWaresId.add(wish.getWareId());
         }
         for(Ware ware : wares){
-            vertex.availableWaresId.add(ware.getId());
+            if(ware.getStatus().equals("Свободный")) {
+                vertex.availableWaresId.add(ware.getId());
+            }
         }
         return vertex;
     }

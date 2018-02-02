@@ -1,0 +1,56 @@
+body {
+    color: #404040;
+    background: #0ca3d2;
+    font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;
+}
+
+.Text {
+    text-align: center;
+    display: inline-block;
+    margin: auto;
+    width: 659px;
+    color: white;
+    font-weight: lighter;
+}
+
+.titular {
+    width: 960px;
+    position: center;
+    margin: auto;
+}
+
+.logo {
+    text-align: center;
+    display: inline-block;
+    margin: auto;
+    width: 200px;
+}
+
+.fourButtons{
+    text-align: center;
+   display: inline-block;
+    /*margin: 20px;*/
+    position: absolute;
+    right: 5%;
+    width: 300px;
+
+}
+
+.container {
+    /*display: inline-block;*/
+    width: 960px;
+    position: relative;
+    margin: 50px auto;
+}
+
+.news {
+    
+    text-align: center;
+    display: inline-block;
+    margin: auto;
+    width: 600px;
+    position: absolute;
+    height: 400px;
+    color: white;
+    font-weight: lighter;
+}

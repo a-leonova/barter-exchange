@@ -1,6 +1,9 @@
 package ftc.shift.springbootsample;
 
 import ftc.shift.springbootsample.models.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
@@ -13,22 +16,25 @@ import java.util.concurrent.atomic.AtomicLong;
 @Repository
 public class UserRepository {
 
+
+  private PasswordEncoder encoder = new BCryptPasswordEncoder();
+
   //потокобезопасная переменная, которая "выдает" идентификаторы для сущностей
   private final AtomicLong sequence = new AtomicLong(1);
   //хранилище пользователей (используем вместо базы данных)
   private Map<String, User> users = new HashMap<>();
 
   public UserRepository(){
-    User user = new User("ololo", "ololo", String.valueOf(sequence.getAndIncrement()));
+    User user = new User("ololo", encoder.encode("ololo"), String.valueOf(sequence.getAndIncrement()));
     users.put(user.getId(), user);
 
-    user = new User("ololosha", "ololosha", String.valueOf(sequence.getAndIncrement()));
+    user = new User("ololosha", encoder.encode("ololosha"), String.valueOf(sequence.getAndIncrement()));
     users.put(user.getId(), user);
 
-    user = new User("azaza", "azaza", String.valueOf(sequence.getAndIncrement()));
+    user = new User("azaza", encoder.encode("azaza"), String.valueOf(sequence.getAndIncrement()));
     users.put(user.getId(), user);
 
-    user = new User("keki", "keki", String.valueOf(sequence.getAndIncrement()));
+    user = new User("keki", encoder.encode("keki"), String.valueOf(sequence.getAndIncrement()));
     users.put(user.getId(), user);
 
 

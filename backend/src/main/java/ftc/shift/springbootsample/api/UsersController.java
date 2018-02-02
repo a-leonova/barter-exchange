@@ -1,6 +1,7 @@
 package ftc.shift.springbootsample.api;
 
 
+import ftc.shift.springbootsample.LoginUser;
 import ftc.shift.springbootsample.UserRepository;
 import ftc.shift.springbootsample.WareRepository;
 import ftc.shift.springbootsample.models.User;
@@ -12,9 +13,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 
-import javax.jws.soap.SOAPBinding;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -30,7 +28,7 @@ public class UsersController {
   private PasswordEncoder encoder = new BCryptPasswordEncoder();
 
   //запрос в виде "POST/api/register
-  @PostMapping("/api/register") public @ResponseBody Response register(@RequestBody User newer){
+  @PostMapping("/api/register") public @ResponseBody Response register(@RequestBody LoginUser newer){
 
     Response response = new Response();
 
@@ -50,7 +48,7 @@ public class UsersController {
   }
 
 
-  @PostMapping("/api/login") public @ResponseBody Response login(@RequestBody User guest){
+  @PostMapping("/api/login") public @ResponseBody Response login(@RequestBody LoginUser guest){
     Response response = new Response();
     User user = userRepository.findUser(guest.getEmail());
     if (user == null){

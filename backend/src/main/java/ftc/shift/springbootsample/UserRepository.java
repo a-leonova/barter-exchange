@@ -3,8 +3,6 @@ package ftc.shift.springbootsample;
 import ftc.shift.springbootsample.models.User;
 import org.springframework.stereotype.Repository;
 
-import javax.jws.soap.SOAPBinding;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;

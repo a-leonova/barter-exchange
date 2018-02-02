@@ -14,7 +14,7 @@ public class WishController {
     @Autowired
     private WishRepository wishRepository;
 
-    @PostMapping("/api/new_wish/{id}") public Wish addWare(@RequestBody Wish wish,
+    @PostMapping("/api/new_wish/{id}") public Wish addWish(@RequestBody Wish wish,
                                                            @PathVariable String id) {
 
         return wishRepository.addWish(wish, id);

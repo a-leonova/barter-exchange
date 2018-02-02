@@ -6,8 +6,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Vector;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
@@ -59,4 +61,13 @@ public class UserRepository {
     return new_user;
   }
 
+  public Collection<User> getCityUsers(String cityName){
+    Vector<User> filtered=new Vector<>();
+    for(Map.Entry<String, User> entry :users.entrySet()){
+      if(entry.getValue().getCity().equals(cityName))
+        filtered.add(entry.getValue());
+    }
+    return filtered;
+
+  }
 }

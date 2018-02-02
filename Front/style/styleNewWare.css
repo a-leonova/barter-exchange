@@ -1,5 +1,7 @@
 .New{
+    text-align: center;
     width: 960px;
-    margin: 40px auto;
+    margin:40px auto;
+    display: block;
 
 }

@@ -11,6 +11,10 @@ public class Ware {
     private String description;
     private String exploitation;
 
+    public Ware(){
+
+    }
+
     public Ware(String name, String id, String category, String ownerId, String exploitation){
         this.setExploitation(exploitation);
         this.setCategory(category);

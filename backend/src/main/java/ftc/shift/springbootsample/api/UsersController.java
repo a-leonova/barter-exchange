@@ -1,6 +1,7 @@
 package ftc.shift.springbootsample.api;
 
 
+import ftc.shift.springbootsample.LoginUser;
 import ftc.shift.springbootsample.UserRepository;
 import ftc.shift.springbootsample.WareRepository;
 import ftc.shift.springbootsample.models.User;
@@ -12,8 +13,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -28,39 +27,46 @@ public class UsersController {
 
   private PasswordEncoder encoder = new BCryptPasswordEncoder();
 
-  //запрос в виде "GET/api/login?email=my_email&password=my_password
-  @PostMapping("/api/register") public @ResponseBody User register(@RequestParam("email") String email,
-                                                                   @RequestParam("password") String password,
-                                                                   HttpServletResponse response){
-    if (userRepository.findUser(email) == null){
+  //запрос в виде "POST/api/register
+  @PostMapping("/api/register") public @ResponseBody Response register(@RequestBody LoginUser newer){
 
-      User new_user = userRepository.addUser(email, encoder.encode(password));
+    Response response = new Response();
 
-      String cookie_value = RandomString.randomAlphaNumeric(20);
-      response.addCookie(new Cookie("sid", cookie_value));
+    if (userRepository.findUser(newer.getEmail()) == null){
 
-      userRepository.addCookie(cookie_value, new_user.getId());
-      return new_user;
+      User new_user = userRepository.addUser(newer.getEmail(), encoder.encode(newer.getPassword()));
+
+      response.setData(new_user);
+      response.setStatus("OK");
     }
-    else
-      return null; //there is already user with this email
+
+    else{
+      response.setStatus("SAME_USER");
+    }
+
+      return  response;
   }
-  //запрос в виде "POST/api/register?email=my_email&password=my_password
-  @PostMapping("/api/login") public @ResponseBody User login(@RequestParam("email") String email,
-                                                              @RequestParam("password") String password,
-                                                              HttpServletResponse response){
-
-    User user = userRepository.findUser(email);
-    if (user == null)
-      return null; //no user
 
 
-    if (!encoder.matches(password, user.getPassword()))
-        return null; //mismatching password
+  @PostMapping("/api/login") public @ResponseBody Response login(@RequestBody LoginUser guest){
+    Response response = new Response();
+    User user = userRepository.findUser(guest.getEmail());
+    if (user == null){
+      response.setStatus("USER_NOT_FOUND");
 
-      String cookie_value = RandomString.randomAlphaNumeric(20);
-      response.addCookie(new Cookie("sid", cookie_value));
-      return user;
+    }
+
+    else if (!encoder.matches(guest.getPassword(), user.getPassword())){
+      response.setStatus("BAD_PASSWORD");
+    }
+
+    else{
+      response.setStatus("OK");
+      response.setData(user);
+    }
+
+    return  response;
+
   }
 
 //  //Request "GET/api/user" with the aid of cookie
@@ -74,56 +80,18 @@ public class UsersController {
     return userRepository.getUserById(id); //if null returned - there is no user with this ID
   }
 
-  //Request "PUT/api/user/change?name=newName&email=newEmail....
-  //some fields can be unchanged, so they won't be in request
-  //but backend will check it
-  @PutMapping("/api/user/change") public @ResponseBody User changeUser(@CookieValue(value = "sid") String sidCookie,
-                                                                       @RequestParam(value = "email", defaultValue = "null") String email,
-                                                                       @RequestParam(value = "password", defaultValue = "null") String password,
-                                                                       @RequestParam(value = "name", defaultValue = "null") String name,
-                                                                       @RequestParam(value = "city", defaultValue = "null") String city,
-                                                                       @RequestParam(value = "number", defaultValue = "null") String number,
-                                                                       @RequestParam(value = "pageInSocialNetwork", defaultValue = "null") String pageInSocialNetwork) {
+  //Request "PUT/api/user/{id} into body give me a user
+  @PutMapping("/api/user/{id}") public @ResponseBody User changeUser(@PathVariable String id, @RequestBody User changed_user) {
 
-    User user = userRepository.getUserByCookie(sidCookie);
-    if (user == null)
-      return null; //no user with this cookie. session was finished
+    if (!changed_user.getPassword().equals(""))
+      changed_user.setPassword(encoder.encode(changed_user.getPassword()));
 
-    if (!email.equals("null"))
-        user.setEmail(email);
+    return userRepository.getUserById(id).change(changed_user);
 
-    if (!password.equals("null"))
-      user.setPassword(encoder.encode(password));
-    if (!name.equals("null"))
-      user.setName(name);
-    if (!city.equals("null"))
-      user.setCity(city);
-    if (!number.equals("null"))
-      user.setNumber(number);
-    if (!pageInSocialNetwork.equals("null"))
-      user.setPage_in_social_network(pageInSocialNetwork);
-    return user;
   }
 
-  @GetMapping("/api/user/ware/{id}") public @ResponseBody Collection<Ware> getUserWare(@PathVariable String id){
+  @GetMapping("/api/user/ware/{id}") public @ResponseBody Collection<Ware> UserWare(@PathVariable String id){
 
-    Collection<Ware> allWare = wareRepository.getAll();
-    ArrayList<Ware> userWare = new ArrayList<>();
-
-    for (Ware it : allWare){
-      if (it.getOwnerId().equals(id))
-        userWare.add(it);
-    }
-
-    return  userWare;
+    return wareRepository.getUserWares(id);
   }
-
-//  public boolean checkCookieId (String cookie, String id){
-//    if (!userRepository.getUserByCookie(cookie).getId().equals(id))
-//      return false;
-//    else
-//      return true;
-//  }
-
-
 }

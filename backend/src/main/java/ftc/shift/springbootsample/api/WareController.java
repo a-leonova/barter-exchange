@@ -22,46 +22,31 @@ public class WareController {
 
   @PostMapping("/api/new_ware/{id}") public Ware addWare(@RequestBody Ware ware,
                                                         @PathVariable String id) {
-      userRepository.addUser("ololosha", "trololosha");
+
       return wareRepository.addWare(ware, id);
   }
 
-  @PutMapping("/api/change_ware/{id}") public Ware changeWare(@PathVariable String id,
-                                                              @RequestParam(value = "category", defaultValue = "null") String category,
-                                                              @RequestParam(value = "name", defaultValue = "null") String name,
-                                                              @RequestParam(value = "description", defaultValue = "null") String description,
-                                                              @RequestParam(value = "exploitation", defaultValue = "null") String exploitation) {
+  @PutMapping("/api/change_ware/{id}") public Ware changeWare(@PathVariable String id, @RequestBody Ware changeWare) {
     Ware ware = wareRepository.findWare(id);
     if (ware == null)
         return null; //no ware with this ID
 
-      if (!category.equals("null"))
-          ware.setCategory(category);
 
-      if (!name.equals("null"))
-          ware.setName(name);
-
-      if (!description.equals("null"))
-          ware.setDescription(description);
-
-      if (!exploitation.equals("null"))
-          ware.setExploitation(exploitation);
-
-      return ware;
-  }
+      return ware.change(changeWare);
+ }
 
   //Request GET/api/filter?city=some_city&... (параметры запроса еще или отсутствуют)
   @GetMapping("api/ware/filter") public Collection<Ware> listWare(@RequestParam(value = "category", defaultValue = "null") String category,
                                                                   @RequestParam(value = "city", defaultValue = "null") String city,
                                                                   @RequestParam(value = "exploitation", defaultValue = "null") String exploitation) {
     Collection<Ware> filteredList = wareRepository.getAll();
-    if (!category.equals("null")){
+    if (!category.equals("null") && !category.equals("Выберите категорию")){
         filteredList = categoryFilter(category, filteredList);
     }
-    if (!exploitation.equals("null")){
+    if (!exploitation.equals("null") && !exploitation.equals("Выберите срок эксплуатации")){
         filteredList = exploitationFilter(exploitation, filteredList);
     }
-    if (!city.equals("null")){
+    if (!city.equals("null") && !city.equals("Выберите город")){
         filteredList = cityFilter(city, filteredList);
     }
     return filteredList;
@@ -109,5 +94,7 @@ public class WareController {
         return  cityWare;
 
     }
+
+
 }
 

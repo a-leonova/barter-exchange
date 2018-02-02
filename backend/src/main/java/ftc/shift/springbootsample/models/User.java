@@ -93,6 +93,10 @@ public class User {
 
   private String comments;
 
+  public User(){
+
+  }
+
   public User(String email, String hashed_password, String id) {
     this.email = email;
     this.password = hashed_password;
@@ -103,6 +107,29 @@ public class User {
     this.id = id;
     this.number = "88005553535";
     this.page_in_social_network = "vk.com";
+  }
+
+  public User change(User changed_user){
+
+    this.name = changed_user.name;
+    this.city = changed_user.city;
+    this.comments = changed_user.comments;
+    this.email = changed_user.email;
+    this.number = changed_user.number;
+    this.page_in_social_network = changed_user.page_in_social_network;
+
+
+    if (!changed_user.password.equals(""))
+      this.password = changed_user.password;
+
+    if (!changed_user.rate.equals(""))
+      this.rate = changed_user.rate;
+
+    if (!changed_user.id.equals(""))
+      this.id = changed_user.id;
+
+    return this;
+
   }
 
 }

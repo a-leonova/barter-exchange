@@ -1,9 +1,13 @@
 package ftc.shift.springbootsample;
 
+import ftc.shift.springbootsample.models.Ware;
 import ftc.shift.springbootsample.models.Wish;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Map;
 import java.util.Vector;
 
 @Repository
@@ -18,7 +22,8 @@ public class WishRepository {
     }
 
     public Collection<Wish> getUserWishes(String userId){
-        Vector<Wish> userWishes=new Vector<>();
+        ArrayList<Wish> userWishes=new ArrayList<>();
+
         for(Wish wish : wishRepository){
             if(wish.getUserId().equals(userId)){
                 userWishes.add(wish);

@@ -14,6 +14,29 @@ import java.util.Vector;
 public class WishRepository {
     private Vector<Wish> wishRepository=new Vector<Wish>();
 
+    public WishRepository(){
+        Wish wish = new Wish("3", "1");
+        wishRepository.add(wish);
+
+        wish = new Wish("3", "4");
+        wishRepository.add(wish);
+
+        wish = new Wish("1", "2");
+        wishRepository.add(wish);
+
+        wish = new Wish("2", "1");
+        wishRepository.add(wish);
+
+        wish = new Wish("4", "2");
+        wishRepository.add(wish);
+
+        wish = new Wish("1", "3");
+        wishRepository.add(wish);
+
+        wish = new Wish("4", "1");
+        wishRepository.add(wish);
+    }
+
     public Wish addWish(Wish wish, String userId)
     {
         wish.setUserId(userId);

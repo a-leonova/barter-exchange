@@ -14,7 +14,7 @@ public class Ware {
     public Ware(String name, String id, String category, String ownerId, String exploitation){
         this.setExploitation(exploitation);
         this.setCategory(category);
-        this.setStatus("FREE");
+        this.setStatus("Свободный");
         this.setOwnerId(ownerId);
         this.setName(name);
         this.setId(id);
@@ -76,5 +76,17 @@ public class Ware {
         this.exploitation = exploitation;
     }
 
+    public Ware change (Ware changed_Ware){
 
+        this.name = changed_Ware.name;
+        this.id = changed_Ware.id;
+        this.category = changed_Ware.category;
+        this.ownerId = changed_Ware.ownerId;
+        this.status = changed_Ware.status;
+        this.description = changed_Ware.description;
+        this.exploitation = changed_Ware.exploitation;
+        
+        return this;
+
+    }
 }

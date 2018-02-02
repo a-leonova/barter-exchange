@@ -26,29 +26,14 @@ public class WareController {
       return wareRepository.addWare(ware, id);
   }
 
-  @PutMapping("/api/change_ware/{id}") public Ware changeWare(@PathVariable String id,
-                                                              @RequestParam(value = "category", defaultValue = "null") String category,
-                                                              @RequestParam(value = "name", defaultValue = "null") String name,
-                                                              @RequestParam(value = "description", defaultValue = "null") String description,
-                                                              @RequestParam(value = "exploitation", defaultValue = "null") String exploitation) {
+  @PutMapping("/api/change_ware/{id}") public Ware changeWare(@PathVariable String id, @RequestBody Ware changeWare) {
     Ware ware = wareRepository.findWare(id);
     if (ware == null)
         return null; //no ware with this ID
 
-      if (!category.equals("null"))
-          ware.setCategory(category);
 
-      if (!name.equals("null"))
-          ware.setName(name);
-
-      if (!description.equals("null"))
-          ware.setDescription(description);
-
-      if (!exploitation.equals("null"))
-          ware.setExploitation(exploitation);
-
-      return ware;
-  }
+      return ware.change(changeWare);
+ }
 
   //Request GET/api/filter?city=some_city&... (параметры запроса еще или отсутствуют)
   @GetMapping("api/ware/filter") public Collection<Ware> listWare(@RequestParam(value = "category", defaultValue = "null") String category,

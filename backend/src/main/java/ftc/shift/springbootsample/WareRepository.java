@@ -19,20 +19,20 @@ public class WareRepository {
     private Map<String, Ware> wares = new HashMap<>();
 
     public WareRepository(){
-    Ware ware = new Ware("velik", String.valueOf(sequence.getAndIncrement()),
-            "velosiped", "1", "1 year");
+    Ware ware = new Ware("Хороший велосипед", String.valueOf(sequence.getAndIncrement()),
+            "Спорт", "1", "<1 года");
     wares.put(ware.getId(), ware);
 
-    ware = new Ware("My bike", String.valueOf(sequence.getAndIncrement()),
-            "velosiped", "2", "2 year");
+    ware = new Ware("Скоростной велосипед", String.valueOf(sequence.getAndIncrement()),
+            "Спорт", "2", "1 - 2 года");
     wares.put(ware.getId(), ware);
 
-    ware = new Ware("Mishka", String.valueOf(sequence.getAndIncrement()),
-                "toy", "2", "1 year");
+    ware = new Ware("Мишка", String.valueOf(sequence.getAndIncrement()),
+                "Игрушки", "2", "<1 года");
     wares.put(ware.getId(), ware);
 
-    ware = new Ware("Limon", String.valueOf(sequence.getAndIncrement()),
-                "toy", "3", "3 year");
+    ware = new Ware("Игрушка мягкая Лимон", String.valueOf(sequence.getAndIncrement()),
+                "Игрушка", "3", "2 - 4 года");
     wares.put(ware.getId(), ware);
     }
 

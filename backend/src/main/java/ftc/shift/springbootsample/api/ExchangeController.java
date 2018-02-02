@@ -22,7 +22,7 @@ public class ExchangeController {
     @Autowired
     private WishRepository wishRepository;
 
-    @GetMapping("/api/exchanges/{userId}") public Collection<Collection<Exchange>> getUserExchange(@PathVariable String userId){
+    @GetMapping("/api/exchanges-user/{userId}") public Collection<Collection<Exchange>> getUserExchange(@PathVariable String userId){
         Collection<Collection<StoredExchange>> usersStoredExchanges = exchangeRepository.getUserExchanges(userId);
         if(usersStoredExchanges==null) {
             return null;
@@ -34,7 +34,11 @@ public class ExchangeController {
         return usersExchanges;
     }
 
-    @PostMapping("/api/exchanges/find-simple") public Collection<Exchange> getSingleExchange(@RequestBody Wish wish){
+    @GetMapping("/api/exchanges/find-simple") public Collection<Exchange> getSingleExchange(@RequestParam String userId,
+                                                                                             @RequestParam String id){
+        Wish wish = new Wish();
+        wish.setWareId(id);
+        wish.setUserId(userId);
         Collection<StoredExchange> exchange = parseVertex(findExchange(wish,1));
         if(exchange==null) {
             return null;
@@ -42,8 +46,14 @@ public class ExchangeController {
         exchangeRepository.addExchange(exchange);
         return buildExchange(exchange);
     }
+///api/exchanges/find-chain?userId=uI&id=wI
+    @GetMapping("/api/exchanges/find-chain") public Collection<Exchange> getComplexExchange(@RequestParam String userId,
+                                                                                            @RequestParam String id){
 
-    @PostMapping("/api/exchanges/find-chain") public Collection<Exchange> getComplexExchange(@RequestBody Wish wish){
+        Wish wish = new Wish();
+        wish.setUserId(userId);
+        wish.setWareId(id);
+
         Collection<StoredExchange> exchange = parseVertex(findExchange(wish,5));
         if(exchange==null) {
             return null;

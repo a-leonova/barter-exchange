@@ -26,4 +26,8 @@ public class Wish {
         userId=user;
         wareId=ware;
     }
+
+    public Wish(){
+
+    }
 }

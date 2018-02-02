@@ -37,8 +37,10 @@ public class WishRepository {
         wishRepository.add(wish);
     }
 
-    public Wish addWish(Wish wish, String userId)
+    public Wish addWish(String wareId, String userId)
     {
+        Wish wish = new Wish();
+        wish.setWareId(wareId);
         wish.setUserId(userId);
         wishRepository.add(wish);
         return wish;

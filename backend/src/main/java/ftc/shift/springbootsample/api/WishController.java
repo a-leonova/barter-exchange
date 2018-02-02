@@ -20,10 +20,10 @@ public class WishController {
     @Autowired
     private WareRepository wareRepository;
 
-    @PostMapping("/api/new_wish/{id}") public Wish addWish(@RequestBody Wish wish,
+    @PostMapping("/api/new_wish/{id}") public Wish addWish(@RequestBody String wareId,
                                                            @PathVariable String id) {
 
-        return wishRepository.addWish(wish, id);
+        return wishRepository.addWish(wareId, id);
     }
 
     @GetMapping("api/user_wish/{id}") public Collection<Ware> userWishes(@PathVariable String id) {

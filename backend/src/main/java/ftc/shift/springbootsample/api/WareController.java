@@ -40,13 +40,13 @@ public class WareController {
                                                                   @RequestParam(value = "city", defaultValue = "null") String city,
                                                                   @RequestParam(value = "exploitation", defaultValue = "null") String exploitation) {
     Collection<Ware> filteredList = wareRepository.getAll();
-    if (!category.equals("null")){
+    if (!category.equals("null") && !category.equals("Выберите категорию")){
         filteredList = categoryFilter(category, filteredList);
     }
-    if (!exploitation.equals("null")){
+    if (!exploitation.equals("null") && !exploitation.equals("Выберите срок эксплуатации")){
         filteredList = exploitationFilter(exploitation, filteredList);
     }
-    if (!city.equals("null")){
+    if (!city.equals("null") && !city.equals("Выберите город")){
         filteredList = cityFilter(city, filteredList);
     }
     return filteredList;

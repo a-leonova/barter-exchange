@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 
 
 @RestController
@@ -33,11 +34,20 @@ public class WishController {
         for (Wish wish : wishes){
             userWares.add(wareRepository.findWare(wish.getWareId()));
         }
-
         return userWares;
+    }
 
+    @GetMapping("api/user_wish/find") public Collection<Ware> giveSomeWares() {
 
+        ArrayList<Ware> givingList= new ArrayList<>();
+        Collection<Ware> wares = wareRepository.getAll();
 
+        int i = 0;
+        for (Iterator<Ware> ware = wares.iterator(); ware.hasNext() && i < 10; ++i){
+            Ware w = ware.next();
+            givingList.add(w);
+        }
+        return givingList;
     }
 
 

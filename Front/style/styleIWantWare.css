@@ -16,6 +16,7 @@ body {
     color: white;
     font-weight: lighter;
     display: inline-block;
+
 }
 
 .logo {
@@ -23,4 +24,12 @@ body {
     display: inline-block;
     margin: auto;
     width: 200px;
+}
+.Add {
+    text-align: center;
+    margin: auto;
+    position: center;
+    width: 960px;
+    font-weight: lighter;
+    color: white;
 }

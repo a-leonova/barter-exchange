@@ -90,16 +90,8 @@ public class UsersController {
 
   }
 
-  @GetMapping("/api/user/ware/{id}") public @ResponseBody Collection<Ware> getUserWare(@PathVariable String id){
+  @GetMapping("/api/user/ware/{id}") public @ResponseBody Collection<Ware> UserWare(@PathVariable String id){
 
-    Collection<Ware> allWare = wareRepository.getAll();
-    ArrayList<Ware> userWare = new ArrayList<>();
-
-    for (Ware it : allWare){
-      if (it.getOwnerId().equals(id))
-        userWare.add(it);
-    }
-
-    return  userWare;
+    return wareRepository.getUserWares(id);
   }
 }

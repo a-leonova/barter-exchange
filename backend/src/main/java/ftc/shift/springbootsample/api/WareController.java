@@ -109,5 +109,7 @@ public class WareController {
         return  cityWare;
 
     }
+
+
 }
 

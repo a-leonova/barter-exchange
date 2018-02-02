@@ -3,6 +3,7 @@ package ftc.shift.springbootsample;
 import ftc.shift.springbootsample.models.Ware;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -52,5 +53,18 @@ public class WareRepository {
         }
         return null;
     }
+
+    public Collection<Ware> getUserWares(String id){
+
+        Collection<Ware> allWare = getAll();
+        ArrayList<Ware> userWare = new ArrayList<>();
+
+        for (Ware it : allWare){
+            if (it.getOwnerId().equals(id))
+                userWare.add(it);
+        }
+        return  userWare;
+    }
+
 
 }

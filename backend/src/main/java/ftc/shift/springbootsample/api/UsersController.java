@@ -2,8 +2,10 @@ package ftc.shift.springbootsample.api;
 
 
 import ftc.shift.springbootsample.UserRepository;
+import ftc.shift.springbootsample.WareRepository;
 import ftc.shift.springbootsample.models.User;
 import ftc.shift.springbootsample.models.RandomString;
+import ftc.shift.springbootsample.models.Ware;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @RestController
 @CrossOrigin
@@ -19,6 +23,9 @@ public class UsersController {
 
   @Autowired
   private UserRepository userRepository;
+  @Autowired
+  private WareRepository wareRepository;
+
   private PasswordEncoder encoder = new BCryptPasswordEncoder();
 
   //запрос в виде "GET/api/login?email=my_email&password=my_password
@@ -96,6 +103,19 @@ public class UsersController {
     if (!pageInSocialNetwork.equals("null"))
       user.setPage_in_social_network(pageInSocialNetwork);
     return user;
+  }
+
+  @GetMapping("/api/user/ware/{id}") public @ResponseBody Collection<Ware> getUserWare(@PathVariable String id){
+
+    Collection<Ware> allWare = wareRepository.getAll();
+    ArrayList<Ware> userWare = new ArrayList<>();
+
+    for (Ware it : allWare){
+      if (it.getOwnerId().equals(id))
+        userWare.add(it);
+    }
+
+    return  userWare;
   }
 
 //  public boolean checkCookieId (String cookie, String id){

@@ -11,6 +11,15 @@ public class Ware {
     private String description;
     private String exploitation;
 
+    public Ware(String name, String id, String category, String ownerId, String exploitation){
+        this.setExploitation(exploitation);
+        this.setCategory(category);
+        this.setStatus("FREE");
+        this.setOwnerId(ownerId);
+        this.setName(name);
+        this.setId(id);
+    }
+
     public String getName() {
         return name;
     }

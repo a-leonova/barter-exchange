@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Swap</title>
+
+    <link rel="stylesheet" href="style/styleHomePage.css">
+
+
+</head>
+<body>
+
+<div class="Reg">
+    <font size="10">
+        Ненужные вещи всё ещё пылятся в коробках?
+    </font>
+    <p></p>
+    <form action="homePage.html">
+        <button type="submit" style="border-color: #40c781;
+                                 background-color: #40c781;
+                                 font-weight: bold;
+                                 color: white;
+                                 width: 200px;
+                                 height: 50px;
+                                 text-transform: uppercase;font-size: 150%;">
+            Регистрация
+        </button>
+    </form>
+
+</div>
+
+
+<div class="titular">
+
+    <div class="logo">
+
+        <img src="logo.png" width="300" height="300">
+
+    </div>
+
+
+    <section class="container">
+        <div class="login">
+            <h1>ВХОД</h1>
+            <form id="auth">
+                <p><input type="text" name="email" value="" placeholder="Email"></p>
+                <p><input type="password" name="password" value="" placeholder="Пароль"></p>
+                <p class="remember_me">
+                    <label>
+                        <input type="checkbox" name="remember_me" id="remember_me">
+                        Запомнить меня
+                    </label>
+                </p>
+                <p class="submit">
+                    <button type="submit">Войти</button>
+                </p>
+            </form>
+        </div>
+
+        <div class="login-help">
+            <a href="homePage.html">Забыли пароль?</a> Восстановите его!
+        </div>
+    </section>
+
+</div>
+<div class="Text">
+    <font size="10">
+        SWAP - это простой и удобный онлайн-сервис безденежного обмена товарами на территории Росcии
+    </font>
+</div>
+
+</body>
+<script src="./lib/request.js"></script>
+<script src="./js/auth.js"></script>
+</html>

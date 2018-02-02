@@ -1,0 +1,26 @@
+body {
+    color: #404040;
+    background: #0ca3d2;
+    font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;
+}
+.titular {
+    width: 960px;
+    position: center;
+    margin: auto;
+}
+
+.Text {
+    text-align: center;
+    margin: auto;
+    width: 560px;
+    color: white;
+    font-weight: lighter;
+    display: inline-block;
+}
+
+.logo {
+    text-align: center;
+    display: inline-block;
+    margin: auto;
+    width: 200px;
+}

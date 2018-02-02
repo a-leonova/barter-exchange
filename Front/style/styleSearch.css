@@ -24,33 +24,8 @@ body {
     display: inline-block;
     margin: auto;
     width: 200px;
-}
-.Add {
-    text-align: center;
-    margin: auto;
-    position: center;
-    width: 960px;
-    font-weight: lighter;
-    color: white;
-}
-.getList{
+}.search {
     text-align: center;
     width: 960px;
-    position: center;
-    /*margin: 35px 100px;*/
-}
-.title{
-    font-weight: bold;
-    color: white;
-    font-size: large;
-    display: inline-block;
-    /*left: 30px;*/
-}
-.data{
-    text-align: center;
-    color: black;
-    font-weight: lighter;
-    font-size: 32px;
-    display: inline-block;
-    /*left: auto;*/
+    margin: 30px auto ;
 }

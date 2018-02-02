@@ -46,3 +46,15 @@ function getFormData(form) {
 
     return data;
 }
+function deleteCookie(name) {
+    setCookie(name, "", {
+        expires: -1
+    })
+}
+// возвращает cookie с именем name, если есть, если нет, то undefined
+function getCookie(name) {
+    var matches = document.cookie.match(new RegExp(
+        "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+    ));
+    return matches ? decodeURIComponent(matches[1]) : undefined;
+}

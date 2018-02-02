@@ -32,7 +32,10 @@ public class WishController {
         Collection<Wish> wishes = wishRepository.getUserWishes(id);
 
         for (Wish wish : wishes){
-            userWares.add(wareRepository.findWare(wish.getWareId()));
+            Ware ware = wareRepository.findWare(wish.getWareId());
+            if (ware != null){
+                userWares.add(ware);
+            }
         }
         return userWares;
     }

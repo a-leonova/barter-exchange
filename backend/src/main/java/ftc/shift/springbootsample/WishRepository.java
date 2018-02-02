@@ -15,10 +15,10 @@ public class WishRepository {
     private Vector<Wish> wishRepository=new Vector<Wish>();
 
     public WishRepository(){
-        Wish wish = new Wish("3", "1");
+        Wish wish = new Wish("1", "4");
         wishRepository.add(wish);
 
-        wish = new Wish("3", "4");
+        wish = new Wish("3", "1");
         wishRepository.add(wish);
 
         wish = new Wish("1", "2");

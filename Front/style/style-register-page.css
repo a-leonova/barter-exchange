@@ -8,8 +8,7 @@ body {
     color: red;
     font-size: large;
 }
-.Roof {
-    display: inline-block;
+.Reg {
     text-align: center;
     margin: auto;
     position: center;
@@ -33,23 +32,15 @@ body {
 }
 
 .logo {
-    text-align: left;
+    text-align: center;
     display: inline-block;
     margin: auto;
     width: 500px;
 }
 
-.titular {
-    width: 960px;
-    position: relative;
-    margin: auto 130px;
-}
-
 .container {
-    position: center;
-    right: 50%;
     display: inline-block;
-    text-align: center;
+    text-align: right;
     margin: auto;
 }
 

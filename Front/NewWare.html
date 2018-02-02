@@ -8,6 +8,7 @@
     <title>Новый товар</title>
     <link rel="stylesheet" href="style/stylePersonalPage.css">
     <link rel="stylesheet" href="style/styleNewWare.css">
+    <link rel="stylesheet" href="style/styleIWantWare.css">
 </head>
 
 <body>
@@ -24,64 +25,83 @@
         </font>
     </div>
 </div>
-<div class="New">
-    <style>
-        select {
-            height: 40px;
-            width: 200.67px;
-        }
-    </style>
+<form class="main_post_form">
+    <div class="New">
+        <style>
+            select {
+                height: 40px;
+                width: 200.67px;
+            }
+        </style>
 
-    <select >
-        <option>Выберите категорию</option>
-        <option>Телефоны</option>
-        <option>Товары для компьютера</option>
-        <option>Аудио и видео</option>
-        <option>Игры, приставки и программы</option><
-        <option>Фототехника</option>
-        <option>Ноутбуки</option>
-        <option>Оргтехника и расходники</option>
-        <option>ПК</option>
-        <option>Плантшеты</option>
-        <option>Одежда, обувь, аксессуары</option>
-        <option>Детская одежда и обувь</option>
-        <option>Товары для детей и игрушки</option>
-        <option>Часы и украшению</option>
-        <option>Мебель</option>
-        <option>Ремонт</option>
-        <option>Бытовая техника</option>
-        <option>Товары для кухни</option>
-        <option>Растения</option>
-        <option>Продукты питания</option>
-        <option>Игрушки</option>
-        <option>Товары для школы</option>
-        <option>Музыкальные инструменты</option>
-        <option>Охота и рыбалка</option>
-        <option>Спорт</option>
-        <option>Для машины</option>
-    </select>
-<p></p>
-    <form>
-        <textarea rows="1" cols="25" required placeholder="Введите название товара"></textarea>
-    </form>
-    <p></p>
+        <select name="category" >
+            <option>Выберите категорию</option>
+            <option>Телефоны</option>
+            <option>Товары для компьютера</option>
+            <option>Аудио и видео</option>
+            <option>Игры, приставки и программы</option><
+            <option>Фототехника</option>
+            <option>Ноутбуки</option>
+            <option>Оргтехника и расходники</option>
+            <option>ПК</option>
+            <option>Плантшеты</option>
+            <option>Одежда, обувь, аксессуары</option>
+            <option>Детская одежда и обувь</option>
+            <option>Товары для детей и игрушки</option>
+            <option>Часы и украшению</option>
+            <option>Мебель</option>
+            <option>Ремонт</option>
+            <option>Бытовая техника</option>
+            <option>Товары для кухни</option>
+            <option>Растения</option>
+            <option>Продукты питания</option>
+            <option>Игрушки</option>
+            <option>Товары для школы</option>
+            <option>Музыкальные инструменты</option>
+            <option>Охота и рыбалка</option>
+            <option>Спорт</option>
+            <option>Для машины</option>
+        </select>
+        <p></p>
+        <!--<form>-->
+            <textarea name="name" rows="1" cols="25" required placeholder="Введите название товара"></textarea>
+        <!--</form>-->
+        <p></p>
+        <select name="exploitation">
+            <option>Выберите срок эксплуатации</option>
+            <option><1 года</option>
+            <option>1 - 2 года</option>
+            <option>2 - 4 года</option>
+            <option>4 - 6 лет</option><
+            <option>6 - 8 лет</option>
+            <option>8 - 10 лет</option>
+            <option>больше 10 лет</option>
+        </select>
+        <p></p>
+        <!--<form>-->
+            <textarea name="description" rows="10" cols="25" required placeholder="Введите описание товара"></textarea>
+        <!--</form>-->
+    </div>
+    <div class="Add">
 
-    <select>
-        <option>Выберите срок эксплуатации</option>
-        <option><1 года</option>
-        <option>1 - 2 года</option>
-        <option>2 - 4 года</option>
-        <option>4 - 6 лет</option><
-        <option>6 - 8 лет</option>
-        <option>8 - 10 лет</option>
-        <option>больше 10 лет</option>
-    </select>
-    <p></p>
-
-    <form>
-        <textarea rows="10" cols="25" required placeholder="Введите описание товара"></textarea>
-    </form>
-</div>
+        <!--<form action="NewWare.html">-->
+            <font size="5">
+                Добавить новый товар:
+            </font>
+            <button type="submit"  style="border-color: #40c781;
+                                 background-color: #40c781;
+                                 font-weight: bold;
+                                 color: white;
+                                 width: 200px;
+                                 height: 50px;
+                                 text-transform: uppercase;font-size: 150%;">
+                +Добавить
+            </button>
+        <!--</form>-->
+    </div>
+</form>
 
 </body>
+<script src="./lib/request.js"></script>
+<script src="./js/new-ware.js"></script>
 </html>

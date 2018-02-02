@@ -36,21 +36,21 @@ body {
 .getList{
     text-align: center;
     width: 960px;
-    position: center;
-    /*margin: 35px 100px;*/
+    margin: 40px auto;
 }
 .title{
     font-weight: bold;
     color: white;
     font-size: large;
-    display: inline-block;
-    /*left: 30px;*/
+    display: block;
+    width: 187px;
+
 }
 .data{
     text-align: center;
-    color: black;
-    font-weight: lighter;
-    font-size: 32px;
-    display: inline-block;
-    /*left: auto;*/
+    color: #720a10;
+    font-weight: normal;
+    font-size: 25px;
+    display: block;
+
 }

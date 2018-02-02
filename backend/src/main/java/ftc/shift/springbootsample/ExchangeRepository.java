@@ -1,7 +1,6 @@
 package ftc.shift.springbootsample;
 
-import ftc.shift.springbootsample.models.Exchange;
-import ftc.shift.springbootsample.models.Ware;
+import ftc.shift.springbootsample.models.StoredExchange;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
@@ -13,28 +12,28 @@ import java.util.concurrent.atomic.AtomicLong;
 @Repository
 public class ExchangeRepository {
     private final AtomicLong sequence = new AtomicLong(1);
-    private Map<String, Collection<Exchange>> exchanges=new HashMap<>();
+    private Map<String, Collection<StoredExchange>> exchanges=new HashMap<>();
 
     public ExchangeRepository() {
     }
 
-    public Collection<Exchange> findExchange(String exchangeId){
-        for (Map.Entry<String, Collection<Exchange>> entry : exchanges.entrySet()) {
+    public Collection<StoredExchange> findExchange(String exchangeId){
+        for (Map.Entry<String, Collection<StoredExchange>> entry : exchanges.entrySet()) {
             if (entry.getKey().equals(exchangeId))
                 return entry.getValue();
         }
         return null;
     }
 
-    public void addExchange (Collection<Exchange> exchange){
+    public void addExchange (Collection<StoredExchange> exchange){
         exchanges.put(String.valueOf(sequence.getAndIncrement()),exchange);
     }
 
-    public Collection<Collection<Exchange>> getUserExchanges(String userId){
-        Vector<Collection<Exchange>> userExchanges=new Vector<>();
-        for(Map.Entry<String, Collection<Exchange>> entry : exchanges.entrySet()) {
+    public Collection<Collection<StoredExchange>> getUserExchanges(String userId){
+        Vector<Collection<StoredExchange>> userExchanges=new Vector<>();
+        for(Map.Entry<String, Collection<StoredExchange>> entry : exchanges.entrySet()) {
             boolean participate=false;
-            for(Exchange exchange : entry.getValue()){
+            for(StoredExchange exchange : entry.getValue()){
                 if((exchange.getFirstUserId().equals(userId)) || (exchange.getSecondUserId().equals(userId))){
                     participate=true;
                     break;

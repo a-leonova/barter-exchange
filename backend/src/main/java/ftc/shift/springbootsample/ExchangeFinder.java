@@ -13,15 +13,15 @@ public class ExchangeFinder {
             for(int parent=0; parent<parentsNumber && !loopFound; parent++){
                 Vertex burning=possibleParents.remove();
                 for(int user=0; user<users.size(); user++){
-                    String exchangeWare=burning.getPossibleExchange(users.get(user));
-                    if(!exchangeWare.isEmpty()){
-                        Vertex nextPossible=users.get(user);
+                    Vertex nextPossible=users.get(user);
+                    String exchangeWare=burning.getPossibleExchange(nextPossible);
+                    if(exchangeWare!=null){
                         nextPossible.parent =burning;
                         nextPossible.exchangeWare=exchangeWare;
-
-                        if(!nextPossible.getPossibleExchange(starter).isEmpty()){
+                        if(nextPossible.getPossibleExchange(starter)!=null){
                             loopFound=true;
                             starter.parent=nextPossible;
+                            starter.exchangeWare=nextPossible.getPossibleExchange(starter);
                             break;
                         }
                         possibleParents.push(nextPossible);

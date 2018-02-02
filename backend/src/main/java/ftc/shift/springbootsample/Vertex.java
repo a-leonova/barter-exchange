@@ -16,7 +16,8 @@ public class Vertex {
         parent=null;
     }
 
-    public String getPossibleExchange(Vertex partner){
+    public String getPossibleExchange(Vertex partner){//null
+        if(!partner.neededWaresId.isEmpty() && !availableWaresId.isEmpty())
         for(String wareId : availableWaresId){
             if(partner.neededWaresId.contains(wareId)){
                 return wareId;

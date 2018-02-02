@@ -2,42 +2,44 @@ package ftc.shift.springbootsample.models;
 
 public class Exchange {
 
-    private String firstUserId;
-    private String secondUserId;
-    private String firstWareId;
-    private String secondWareId;
+    private User firstUser;
+    private User secondUser;
+    private Ware firstWare;
+    private Ware secondWare;
 
-    public String getFirstUserId() {
-        return firstUserId;
+    public User getFirstUser() {
+        return firstUser;
     }
 
-    public String getFirstWareId() {
-        return firstWareId;
+    public Ware getFirstWare() {
+        return firstWare;
     }
 
-    public String getSecondUserId() {
-        return secondUserId;
+    public User getSecondUser() {
+        return secondUser;
     }
 
-    public String getSecondWareId() {
-        return secondWareId;
+    public Ware getSecondWare() {
+        return secondWare;
     }
 
-    public void setFirstUserId(String firstUserId) {
-        this.firstUserId = firstUserId;
+    public void setFirstUser(User firstUser) {
+        this.firstUser = firstUser;
     }
 
-    public void setFirstWareId(String firstWareId) {
-        this.firstWareId = firstWareId;
+    public void setFirstWare(Ware firstWare) {
+        this.firstWare = firstWare;
     }
 
-    public void setSecondUserId(String secondUserId) {
-        this.secondUserId = secondUserId;
+    public void setSecondUser(User secondUser) {
+        this.secondUser = secondUser;
     }
 
-    public void setSecondWareId(String secondWareId) {
-        this.secondWareId = secondWareId;
+    public void setSecondWare(Ware secondWare) {
+        this.secondWare = secondWare;
     }
 
+    public Exchange(){
 
+    }
 }

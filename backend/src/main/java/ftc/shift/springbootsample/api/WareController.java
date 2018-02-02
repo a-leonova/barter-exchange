@@ -22,7 +22,7 @@ public class WareController {
 
   @PostMapping("/api/new_ware/{id}") public Ware addWare(@RequestBody Ware ware,
                                                         @PathVariable String id) {
-      userRepository.addUser("ololosha", "trololosha");
+
       return wareRepository.addWare(ware, id);
   }
 

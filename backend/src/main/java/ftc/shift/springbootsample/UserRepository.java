@@ -17,7 +17,6 @@ public class UserRepository {
   private final AtomicLong sequence = new AtomicLong(1);
   //хранилище пользователей (используем вместо базы данных)
   private Map<String, User> users = new HashMap<>();
-  private Map<String, String> cookies = new HashMap<>();
 
   public UserRepository(){
     User user = new User("ololo", "ololo", String.valueOf(sequence.getAndIncrement()));
@@ -44,12 +43,6 @@ public class UserRepository {
       return null;
   }
 
-  public User getUserByCookie(String cookie){
-
-    return users.get(cookies.get(cookie));
-
-  }
-
   public  User getUserById(String id){
     return users.get(id);
   }
@@ -58,10 +51,6 @@ public class UserRepository {
     User new_user = new User(email, hashed_password, String.valueOf(sequence.getAndIncrement()));
     users.put(new_user.getId(), new_user);
     return new_user;
-  }
-
-  public void addCookie(String cookie_value, String id){
-    cookies.put(cookie_value, id);
   }
 
 }

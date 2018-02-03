@@ -97,6 +97,22 @@ public class User {
 
   }
 
+
+  public User(String email, String hashed_password, String id, String name){
+
+    this.email = email;
+    this.password = hashed_password;
+    this.name = name;
+    this.city = "Новосибирск";
+    this.comments = "";
+    this.rate = 0;
+    this.id = id;
+    this.number = "88005553535";
+    this.page_in_social_network = "vk.com";
+
+
+  }
+
   public User(String email, String hashed_password, String id) {
     this.email = email;
     this.password = hashed_password;

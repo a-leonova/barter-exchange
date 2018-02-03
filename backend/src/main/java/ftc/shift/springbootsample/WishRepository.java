@@ -35,6 +35,21 @@ public class WishRepository {
 
         wish = new Wish("4", "1");
         wishRepository.add(wish);
+
+        wish = new Wish("5", "6");
+        wishRepository.add(wish);
+
+        wish = new Wish("6", "5");
+        wishRepository.add(wish);
+
+        wish = new Wish("7", "6");
+        wishRepository.add(wish);
+
+        wish = new Wish("8", "7");
+        wishRepository.add(wish);
+
+        wish = new Wish("5", "8");
+        wishRepository.add(wish);
     }
 
     public Wish addWish(String wareId, String userId)

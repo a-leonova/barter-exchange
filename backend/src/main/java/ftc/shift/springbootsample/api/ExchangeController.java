@@ -34,21 +34,31 @@ public class ExchangeController {
         return usersExchanges;
     }
 
-    @GetMapping("/api/exchanges/find-simple") public Collection<Exchange> getSingleExchange(@RequestParam String userId,
+    @GetMapping("/api/exchanges/find-simple") public Response getSingleExchange(@RequestParam String userId,
                                                                                              @RequestParam String id){
+
+        Response response = new Response();
+
         Wish wish = new Wish();
         wish.setWareId(id);
         wish.setUserId(userId);
         Collection<StoredExchange> exchange = parseVertex(findExchange(wish,1));
         if(exchange==null) {
-            return null;
+            response.setStatus("NO_EXCHANGE");
         }
-        exchangeRepository.addExchange(exchange);
-        return buildExchange(exchange);
+        else{
+            exchangeRepository.addExchange(exchange);
+            response.setStatus("OK");
+            response.setData(buildExchange(exchange));
+        }
+
+        return response;
+
     }
 ///api/exchanges/find-chain?userId=uI&id=wI
-    @GetMapping("/api/exchanges/find-chain") public Collection<Exchange> getComplexExchange(@RequestParam String userId,
+    @GetMapping("/api/exchanges/find-chain") public Response getComplexExchange(@RequestParam String userId,
                                                                                             @RequestParam String id){
+        Response response = new Response();
 
         Wish wish = new Wish();
         wish.setUserId(userId);
@@ -56,10 +66,14 @@ public class ExchangeController {
 
         Collection<StoredExchange> exchange = parseVertex(findExchange(wish,5));
         if(exchange==null) {
-            return null;
+            response.setStatus("NO_EXCHANGE");
         }
-        exchangeRepository.addExchange(exchange);
-        return buildExchange(exchange);
+        else{
+            exchangeRepository.addExchange(exchange);
+            response.setStatus("OK");
+            response.setData(buildExchange(exchange));
+        }
+        return response;
     }
 
     private Collection<StoredExchange> parseVertex(Vertex vertex){

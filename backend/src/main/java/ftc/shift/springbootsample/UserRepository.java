@@ -27,18 +27,37 @@ public class UserRepository {
   private Map<String, User> users = new HashMap<>();
 
   public UserRepository(){
-    User user = new User("ololo", encoder.encode("ololo"), String.valueOf(sequence.getAndIncrement()));
+    User user = new User("ololo", encoder.encode("ololo"), String.valueOf(sequence.getAndIncrement()),
+            "Dasha");
     users.put(user.getId(), user);
 
-    user = new User("ololosha", encoder.encode("ololosha"), String.valueOf(sequence.getAndIncrement()));
+    user = new User("ololosha", encoder.encode("ololosha"), String.valueOf(sequence.getAndIncrement()),
+            "Nastya");
     users.put(user.getId(), user);
 
-    user = new User("azaza", encoder.encode("azaza"), String.valueOf(sequence.getAndIncrement()));
+    user = new User("azaza", encoder.encode("azaza"), String.valueOf(sequence.getAndIncrement()),
+            "Rita");
     users.put(user.getId(), user);
 
-    user = new User("keki", encoder.encode("keki"), String.valueOf(sequence.getAndIncrement()));
+    user = new User("keki", encoder.encode("keki"), String.valueOf(sequence.getAndIncrement()),
+            "Sasha");
     users.put(user.getId(), user);
 
+    user = new User("Alina", encoder.encode("Alina"), String.valueOf(sequence.getAndIncrement()),
+            "Alina");
+    users.put(user.getId(), user);
+
+    user = new User("Pasha", encoder.encode("Pasha"), String.valueOf(sequence.getAndIncrement()),
+            "Pasha");
+    users.put(user.getId(), user);
+
+    user = new User("Nika", encoder.encode("Nika"), String.valueOf(sequence.getAndIncrement()),
+            "Nika");
+    users.put(user.getId(), user);
+
+    user = new User("Tanya", encoder.encode("Tanya"), String.valueOf(sequence.getAndIncrement()),
+            "Tanya");
+    users.put(user.getId(), user);
 
   }
 

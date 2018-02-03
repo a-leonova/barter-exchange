@@ -19,21 +19,41 @@ public class WareRepository {
     private Map<String, Ware> wares = new HashMap<>();
 
     public WareRepository(){
-    Ware ware = new Ware("Хороший велосипед", String.valueOf(sequence.getAndIncrement()),
-            "Спорт", "1", "<1 года");
-    wares.put(ware.getId(), ware);
+        Ware ware = new Ware("Хороший велосипед", String.valueOf(sequence.getAndIncrement()),
+                "Спорт", "1", "<1 года");
+        wares.put(ware.getId(), ware);
 
-    ware = new Ware("Скоростной велосипед", String.valueOf(sequence.getAndIncrement()),
-            "Спорт", "2", "1 - 2 года");
-    wares.put(ware.getId(), ware);
+        ware = new Ware("Скоростной велосипед", String.valueOf(sequence.getAndIncrement()),
+                "Спорт", "2", "1 - 2 года");
+        wares.put(ware.getId(), ware);
 
-    ware = new Ware("Мишка", String.valueOf(sequence.getAndIncrement()),
-                "Игрушки", "2", "<1 года");
-    wares.put(ware.getId(), ware);
+        ware = new Ware("Мишка", String.valueOf(sequence.getAndIncrement()),
+                    "Игрушки", "2", "<1 года");
+        wares.put(ware.getId(), ware);
 
-    ware = new Ware("Игрушка мягкая Лимон", String.valueOf(sequence.getAndIncrement()),
-                "Игрушка", "3", "2 - 4 года");
-    wares.put(ware.getId(), ware);
+        ware = new Ware("Игрушка мягкая Лимон", String.valueOf(sequence.getAndIncrement()),
+                    "Игрушка", "3", "2 - 4 года");
+        wares.put(ware.getId(), ware);
+
+        ware = new Ware("Скейт", String.valueOf(sequence.getAndIncrement()),
+                "Спорт", "5", "1 - 2 года");
+        wares.put(ware.getId(), ware);
+
+        ware = new Ware("Самокат", String.valueOf(sequence.getAndIncrement()),
+                "Спорт", "6", "2 - 4 года");
+        wares.put(ware.getId(), ware);
+
+        ware = new Ware("Наушники", String.valueOf(sequence.getAndIncrement()),
+                "Аудио и видео", "7", "<1 года");
+        wares.put(ware.getId(), ware);
+
+        ware = new Ware("Asus", String.valueOf(sequence.getAndIncrement()),
+                "Ноутбуки", "8", "2 - 4 года");
+        wares.put(ware.getId(), ware);
+
+        ware = new Ware("Угги", String.valueOf(sequence.getAndIncrement()),
+                "Одежда, обувь, аксуссуары", "7", "<1 года");
+        wares.put(ware.getId(), ware);
     }
 
     public Collection<Ware> getAll(){
